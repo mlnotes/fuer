@@ -7,7 +7,7 @@ package com.mlnotes.fuer.transaction;
 
 /**
  *
- * @author zhf
+ * @author Hanfeng Zhu <me@mlnotes.com>
  */
 public interface Resource {
     public void commit();

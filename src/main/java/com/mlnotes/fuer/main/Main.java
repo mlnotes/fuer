@@ -14,7 +14,7 @@ import com.mlnotes.fuer.transaction.TxInterceptor;
 
 /**
  *
- * @author zhf
+ * @author Hanfeng Zhu <me@mlnotes.com>
  */
 public class Main {
     
@@ -25,7 +25,6 @@ public class Main {
                 binder.bindInterceptor(Matchers.any(),
                         Matchers.any(),
                         new TxInterceptor());
-                
             }
         });
         

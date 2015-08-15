@@ -9,7 +9,7 @@ import com.mlnotes.fuer.transaction.Transactional;
 
 /**
  *
- * @author zhf
+ * @author Hanfeng Zhu <me@mlnotes.com>
  */
 public class Store {
     @Transactional

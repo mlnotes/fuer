@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  *
- * @author zhf
+ * @author Hanfeng Zhu <me@mlnotes.com>
  */
 public class TransactionImpl implements Transaction {
     private Status status;

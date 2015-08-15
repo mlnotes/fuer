@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 
 /**
  *
- * @author zhf
+ * @author Hanfeng Zhu <me@mlnotes.com>
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

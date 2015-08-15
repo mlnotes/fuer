@@ -12,7 +12,7 @@ import org.aopalliance.intercept.MethodInvocation;
 
 /**
  *
- * @author zhf
+ * @author Hanfeng Zhu <me@mlnotes.com>
  */
 public class TxInterceptor implements MethodInterceptor {
     private final List<BeforeCommit> beforeCommits = new LinkedList<>();
@@ -54,3 +54,4 @@ public class TxInterceptor implements MethodInterceptor {
         return result;
     }
 }
+

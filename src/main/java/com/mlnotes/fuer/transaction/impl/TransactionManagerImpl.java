@@ -10,7 +10,7 @@ import com.mlnotes.fuer.transaction.TransactionManager;
 
 /**
  *
- * @author zhf
+ * @author Hanfeng Zhu <me@mlnotes.com>
  */
 public class TransactionManagerImpl implements TransactionManager {
     private ThreadLocal<Transaction> transaction = new ThreadLocal<>();

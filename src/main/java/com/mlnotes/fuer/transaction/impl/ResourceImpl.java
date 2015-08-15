@@ -9,7 +9,7 @@ import com.mlnotes.fuer.transaction.Resource;
 
 /**
  *
- * @author zhf
+ * @author Hanfeng Zhu <me@mlnotes.com>
  */
 public class ResourceImpl implements Resource {
 
