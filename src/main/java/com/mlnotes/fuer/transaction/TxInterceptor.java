@@ -5,6 +5,7 @@
  */
 package com.mlnotes.fuer.transaction;
 
+import com.google.inject.Inject;
 import java.util.LinkedList;
 import java.util.List;
 import org.aopalliance.intercept.MethodInterceptor;
@@ -17,6 +18,9 @@ import org.aopalliance.intercept.MethodInvocation;
 public class TxInterceptor implements MethodInterceptor {
     private final List<BeforeCommit> beforeCommits = new LinkedList<>();
     private final List<AfterCommit> afterCommits = new LinkedList<>();
+    
+    @Inject
+    private TransactionManager transactionManager;
     
     public boolean registerBeforeCommit(BeforeCommit bc) {
         return beforeCommits.add(bc);
@@ -45,7 +49,9 @@ public class TxInterceptor implements MethodInterceptor {
             bc.run();
         }
         
+        transactionManager.begin();
         Object result = mi.proceed();
+        transactionManager.commit();
         
         for(AfterCommit ac : afterCommits) {
             ac.run();

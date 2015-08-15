@@ -5,19 +5,21 @@
  */
 package com.mlnotes.fuer.transaction;
 
+import com.mlnotes.fuer.log.Log;
+
 /**
  *
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
 public interface Transaction {
-    public void start();
+    public int getId();
     public void commit();
     public void rollback();
     public Status getStatus();
-    public boolean addResource(Resource res);
-    public boolean removeResource(Resource res);
+    public boolean apppend(Log log);
     
     enum Status {
+        BEGIN,
         PREPARING,
         PREPARED,
         ROLLBACKING,

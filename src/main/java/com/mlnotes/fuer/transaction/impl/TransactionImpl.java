@@ -5,31 +5,32 @@
  */
 package com.mlnotes.fuer.transaction.impl;
 
-import com.mlnotes.fuer.transaction.Resource;
+import com.mlnotes.fuer.log.Log;
 import com.mlnotes.fuer.transaction.Transaction;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
 public class TransactionImpl implements Transaction {
-    private Status status;
-    private final List<Resource> resources = new ArrayList<>();
+    private final int id;
+    private Status status = Status.BEGIN;
+    
+    public TransactionImpl(int id) {
+        this.id = id;
+    }
     
     @Override
-    public void start() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int getId() {
+        return id;
     }
-
+    
     @Override
     public void commit() {
         // TODO beforeCallback
         status = Status.COMMITING;
-        for(Resource res : resources) {
-            res.commit();
-        }
+        // TODO
+        
         status = Status.COMMITTED;
         // TODO afterCallback
     }
@@ -38,9 +39,8 @@ public class TransactionImpl implements Transaction {
     public void rollback() {
         // TODO beforeCallback
         status = Status.ROLLBACKING;
-        for(Resource res: resources) {
-            res.rollback();
-        }
+        // TODO
+        
         status = Status.ROLLBACKED;
         // TOOD afterCallback
     }
@@ -51,12 +51,7 @@ public class TransactionImpl implements Transaction {
     }
 
     @Override
-    public boolean addResource(Resource res) {
-        return resources.add(res);
-    }
-
-    @Override
-    public boolean removeResource(Resource res) {
+    public boolean apppend(Log log) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

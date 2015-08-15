@@ -3,14 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mlnotes.fuer.transaction;
+package com.mlnotes.fuer.log;
 
 /**
  *
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
-public interface TransactionManager {
-    public Transaction begin();
-    public void commit();
-    public Transaction getTransaction();
+public interface Undolog extends Log {
+    
 }

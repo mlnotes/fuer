@@ -10,7 +10,10 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import com.google.inject.Module;
 import com.google.inject.matcher.Matchers;
+import com.mlnotes.fuer.transaction.TransactionManager;
+import com.mlnotes.fuer.transaction.Transactional;
 import com.mlnotes.fuer.transaction.TxInterceptor;
+import com.mlnotes.fuer.transaction.impl.TransactionManagerImpl;
 
 /**
  *
@@ -22,9 +25,13 @@ public class Main {
         Injector injector = Guice.createInjector(new Module(){
             @Override
             public void configure(Binder binder) {
+                binder.bind(TransactionManager.class).to(TransactionManagerImpl.class);
+                
+                TxInterceptor interceptor = new TxInterceptor();
+                binder.requestInjection(interceptor);
                 binder.bindInterceptor(Matchers.any(),
-                        Matchers.any(),
-                        new TxInterceptor());
+                        Matchers.annotatedWith(Transactional.class),
+                        interceptor);
             }
         });
         
