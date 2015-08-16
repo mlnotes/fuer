@@ -79,6 +79,7 @@ public class Buffer {
         writePos += 2;
     }
     
+    // & 0xff make byte to int, for byte(-20) & 0xff = int(236)
     public int readInt() throws IOException {
         if (readPos + 4 > writePos) {
             throw new IOException("cannot read int from buffer");

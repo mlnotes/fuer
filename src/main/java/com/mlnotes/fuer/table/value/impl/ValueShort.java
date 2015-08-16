@@ -26,6 +26,14 @@ import java.io.IOException;
 public class ValueShort implements Value {
     private short value;
 
+    public short getValue() {
+        return value;
+    }
+    
+    public void setValue(short value) {
+        this.value = value;
+    }
+    
     @Override
     public Type getType() {
         return Type.SHORT;
@@ -39,6 +47,20 @@ public class ValueShort implements Value {
     @Override
     public void read(Buffer buffer) throws IOException {
         value = buffer.readShort();
+    }
+    
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof ValueShort
+                && value == ((ValueShort)other).getValue();
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + this.getType().getId();
+        hash = 97 * hash + this.value;
+        return hash;
     }
     
 }

@@ -49,4 +49,17 @@ public class ValueInt implements Value {
         value = buffer.readInt();
     }
     
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof ValueInt 
+                && value == ((ValueInt)other).getValue();
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 53 * hash + this.getType().getId();
+        hash = 53 * hash + this.value;
+        return hash;
+    }
 }
