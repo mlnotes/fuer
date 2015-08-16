@@ -23,10 +23,14 @@ import java.io.IOException;
  */
 public class Buffer {
 
-    private byte[] data;
+    private final byte[] data;
     private int readPos = 0;
     private int writePos = 0;
 
+    public Buffer(int capacity) {
+        data = new byte[capacity];
+    }
+    
     public byte readByte() throws IOException {
         if (readPos + 1 > writePos) {
             throw new IOException("cannot read int from buffer");
@@ -60,6 +64,7 @@ public class Buffer {
         }
         
         short x = (short)((data[readPos] << 8) + data[readPos+1]);
+        readPos += 2;
         return x;
     }
     
