@@ -49,4 +49,17 @@ public class ValueChar implements Value {
         value = buffer.readChar();
     }
     
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof ValueChar
+                && value == ((ValueChar)other).getValue();
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 71 * hash + this.getType().getId();
+        hash = 71 * hash + this.value;
+        return hash;
+    }
 }

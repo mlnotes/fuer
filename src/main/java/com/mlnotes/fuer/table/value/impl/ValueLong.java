@@ -49,4 +49,17 @@ public class ValueLong implements Value {
         value = buffer.readLong();
     }
     
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof ValueLong
+                && value == ((ValueLong)other).getValue();
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 23 * hash + this.getType().getId();
+        hash = 23 * hash + (int) (this.value ^ (this.value >>> 32));
+        return hash;
+    }
 }

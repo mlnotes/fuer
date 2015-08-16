@@ -40,4 +40,14 @@ public class ValueNull implements Value {
         // do nothing
     }
     
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof ValueNull;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
 }

@@ -49,4 +49,17 @@ public class ValueByte implements Value {
         value = buffer.readByte();
     }
     
+    @Override
+    public boolean equals(Object other) {
+        return other instanceof ValueByte
+                && value == ((ValueByte)other).getValue();
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 31 * hash + this.getType().getId();
+        hash = 31 * hash + this.value;
+        return hash;
+    }
 }
