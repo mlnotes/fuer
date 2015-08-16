@@ -13,15 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mlnotes.fuer.data;
+package com.mlnotes.fuer.table;
 
+import com.mlnotes.fuer.data.Buffer;
 import java.io.IOException;
-import java.io.Writer;
 
 /**
  *
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
 public interface Row {
-    public void write(Writer writer)  throws IOException ;
+
+    public void write(Buffer buffer) throws IOException;
+
+    public void read(Buffer buffer) throws IOException;
 }

@@ -13,12 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mlnotes.fuer.data;
+package com.mlnotes.fuer.table.impl;
+
+import com.mlnotes.fuer.data.Buffer;
+import com.mlnotes.fuer.table.Row;
+import java.io.IOException;
 
 /**
  *
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
-public interface Column {
-    
+public class RowImpl implements Row {
+
+    @Override
+    public void write(Buffer buffer) throws IOException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void read(Buffer buffer) throws IOException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

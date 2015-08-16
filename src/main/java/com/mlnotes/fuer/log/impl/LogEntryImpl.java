@@ -15,27 +15,29 @@
  */
 package com.mlnotes.fuer.log.impl;
 
-import com.mlnotes.fuer.data.Row;
+import com.mlnotes.fuer.data.Buffer;
+import com.mlnotes.fuer.table.Row;
 import com.mlnotes.fuer.log.LogEntry;
 import com.mlnotes.fuer.log.Operation;
+import com.mlnotes.fuer.table.impl.RowImpl;
 import java.io.IOException;
-import java.io.Writer;
 
 /**
  *
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
 public class LogEntryImpl implements LogEntry {
-    private final int id;
-    private final Operation operation;
-    private final Row row;
-    
+
+    private int id;
+    private Operation operation;
+    private Row row;
+
     public LogEntryImpl(int id, Operation operation, Row row) {
         this.id = id;
         this.operation = operation;
         this.row = row;
     }
-    
+
     @Override
     public int getId() {
         return id;
@@ -52,9 +54,18 @@ public class LogEntryImpl implements LogEntry {
     }
 
     @Override
-    public void write(Writer writer) throws IOException {
-        writer.write(id);
-        writer.write(operation.getId());
-        row.write(writer);
+    public void write(Buffer buffer) throws IOException {
+        buffer.writeInt(id);
+        buffer.writeInt(operation.getId());
+        row.write(buffer);
+    }
+
+    @Override
+    public void read(Buffer buffer) throws IOException {
+        this.id = buffer.readInt();
+        this.operation = Operation.fromId(buffer.readInt());
+        Row r = new RowImpl();
+        r.read(buffer);
+        this.row = r;
     }
 }

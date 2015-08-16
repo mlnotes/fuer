@@ -15,17 +15,23 @@
  */
 package com.mlnotes.fuer.log;
 
-import com.mlnotes.fuer.data.Row;
+import com.mlnotes.fuer.data.Buffer;
+import com.mlnotes.fuer.table.Row;
 import java.io.IOException;
-import java.io.Writer;
 
 /**
  *
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
 public interface LogEntry {
+
     public int getId();
+
     public Operation getOperation();
+
     public Row getRow();
-    public void write(Writer writer)  throws IOException;
+
+    public void write(Buffer buffer) throws IOException;
+
+    public void read(Buffer buffer) throws IOException;
 }

@@ -13,34 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mlnotes.fuer.log;
+package com.mlnotes.fuer.table;
 
 /**
  *
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
-public enum Operation {
-    UNKOWN(0),
-    INSERT(1),
-    DELETE(2),
-    UPDATE(3);
+public interface Column {
     
-    private final int id;
-    
-    Operation(int id) {
-        this.id = id;
-    }
-
-    public int getId() {
-        return id;
-    }
-    
-    public static Operation fromId(int id) {
-        for(Operation op : values()) {
-            if(op.id == id) {
-                return op;
-            }
-        }
-        return Operation.UNKOWN;
-    }
 }
