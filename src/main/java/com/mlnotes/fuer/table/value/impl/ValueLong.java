@@ -13,39 +13,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mlnotes.fuer.table.impl;
+package com.mlnotes.fuer.table.value.impl;
 
 import com.mlnotes.fuer.data.Buffer;
-import com.mlnotes.fuer.table.Row;
 import com.mlnotes.fuer.table.value.Value;
-import com.mlnotes.fuer.table.value.ValueFactory;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
-public class RowImpl implements Row {
+public class ValueLong implements Value {
 
-    List<Value> values = new ArrayList<>();
+    @Override
+    public Type getType() {
+        return Type.LONG;
+    }
 
     @Override
     public void write(Buffer buffer) throws IOException {
-        buffer.writeInt(values.size());
-        for (Value v : values) {
-            buffer.writeInt(v.getType().getId());
-            v.write(buffer);
-        }
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void read(Buffer buffer) throws IOException {
-        values = new ArrayList<>();
-        int size = buffer.readInt();
-        for (int i = 0; i < size; ++i) {
-            values.add(ValueFactory.readValue(buffer));
-        }
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+    
 }
