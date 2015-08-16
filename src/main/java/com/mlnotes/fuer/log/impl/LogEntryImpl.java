@@ -21,6 +21,7 @@ import com.mlnotes.fuer.log.LogEntry;
 import com.mlnotes.fuer.log.Operation;
 import com.mlnotes.fuer.table.impl.RowImpl;
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  *
@@ -64,8 +65,37 @@ public class LogEntryImpl implements LogEntry {
     public void read(Buffer buffer) throws IOException {
         this.id = buffer.readInt();
         this.operation = Operation.fromId(buffer.readInt());
-        Row r = new RowImpl();
+        Row r = new RowImpl(null);
         r.read(buffer);
         this.row = r;
+    }
+    
+    @Override
+    public boolean equals(Object other) {
+        if(!(other instanceof LogEntryImpl)){
+            return false;
+        }
+        
+        LogEntryImpl entry = (LogEntryImpl)other;
+        if(id != entry.id || operation != entry.operation) {
+            return false;
+        }
+        
+        if(row == null && entry.row == null) {
+            return true;
+        } else if(row == null || entry.row == null) {
+            return false;
+        }
+        
+        return row.equals(entry.row);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 67 * hash + this.id;
+        hash = 67 * hash + Objects.hashCode(this.operation);
+        hash = 67 * hash + Objects.hashCode(this.row);
+        return hash;
     }
 }

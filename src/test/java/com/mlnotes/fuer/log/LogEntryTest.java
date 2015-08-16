@@ -13,25 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mlnotes.fuer.table;
+package com.mlnotes.fuer.log;
 
 import com.mlnotes.fuer.data.Buffer;
-import com.mlnotes.fuer.table.value.Value;
-import java.io.IOException;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  *
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
-public interface Row {
-
-    // TOOD should row have a default identifier ?
+public class LogEntryTest {
+    private Buffer buffer;
     
-    public void write(Buffer buffer) throws IOException;
-
-    public void read(Buffer buffer) throws IOException;
+    @Before
+    public void setUp() {
+        buffer = new Buffer(1024);
+    }
     
-    public void setValue(int i, Value value);
-    
-    public Value getValue(int i);
+    @Test
+    public void testLogEntryTest() {
+        // TODO 
+    }
 }
