@@ -24,6 +24,15 @@ import java.io.IOException;
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
 public class ValueLong implements Value {
+    private long value;
+    
+    public long getValue() {
+        return value;
+    }
+    
+    public void setValue(long value) {
+        this.value = value;
+    }
 
     @Override
     public Type getType() {
@@ -32,12 +41,12 @@ public class ValueLong implements Value {
 
     @Override
     public void write(Buffer buffer) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        buffer.writeLong(value);
     }
 
     @Override
     public void read(Buffer buffer) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        value = buffer.readLong();
     }
     
 }

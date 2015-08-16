@@ -24,7 +24,16 @@ import java.io.IOException;
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
 public class ValueChar implements Value {
-
+    private char value;
+    
+    public char getValue() {
+        return value;
+    }
+    
+    public void setValue(char value) {
+        this.value = value;
+    }
+    
     @Override
     public Type getType() {
         return Type.CHAR;
@@ -32,12 +41,12 @@ public class ValueChar implements Value {
 
     @Override
     public void write(Buffer buffer) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        buffer.writeChar(value);
     }
 
     @Override
     public void read(Buffer buffer) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        value = buffer.readChar();
     }
     
 }

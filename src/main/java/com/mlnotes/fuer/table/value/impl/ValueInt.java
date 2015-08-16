@@ -24,7 +24,16 @@ import java.io.IOException;
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
 public class ValueInt implements Value {
-
+    private int value;
+    
+    public int getValue() {
+        return value;
+    }
+    
+    public void setValue(int value) {
+        this.value = value;
+    }
+    
     @Override
     public Type getType() {
         return Type.INT;
@@ -32,12 +41,12 @@ public class ValueInt implements Value {
 
     @Override
     public void write(Buffer buffer) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        buffer.writeInt(value);
     }
 
     @Override
     public void read(Buffer buffer) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        value = buffer.readInt();
     }
     
 }

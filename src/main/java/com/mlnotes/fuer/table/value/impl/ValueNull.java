@@ -32,12 +32,12 @@ public class ValueNull implements Value {
 
     @Override
     public void write(Buffer buffer) throws IOException {
-        
+        // do nothing
     }
 
     @Override
     public void read(Buffer buffer) throws IOException {
-        
+        // do nothing
     }
     
 }

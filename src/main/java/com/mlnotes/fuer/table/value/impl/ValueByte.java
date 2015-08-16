@@ -24,7 +24,16 @@ import java.io.IOException;
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
 public class ValueByte implements Value {
-
+    private byte value;
+    
+    public void setValue(byte value) {
+        this.value = value;
+    }
+    
+    public byte getValue() {
+        return value;
+    }
+    
     @Override
     public Type getType() {
         return Type.BYTE;
@@ -32,12 +41,12 @@ public class ValueByte implements Value {
 
     @Override
     public void write(Buffer buffer) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        buffer.writeByte(value);
     }
 
     @Override
     public void read(Buffer buffer) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        value = buffer.readByte();
     }
     
 }

@@ -24,6 +24,7 @@ import java.io.IOException;
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
 public class ValueShort implements Value {
+    private short value;
 
     @Override
     public Type getType() {
@@ -32,12 +33,12 @@ public class ValueShort implements Value {
 
     @Override
     public void write(Buffer buffer) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        buffer.writeShort(value);
     }
 
     @Override
     public void read(Buffer buffer) throws IOException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        value = buffer.readShort();
     }
     
 }
