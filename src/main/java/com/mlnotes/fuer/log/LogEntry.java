@@ -5,22 +5,17 @@
  */
 package com.mlnotes.fuer.log;
 
+import com.mlnotes.fuer.data.Row;
+import java.io.IOException;
+import java.io.Writer;
+
 /**
  *
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
-public enum Operation {
-    INSERT(0),
-    DELETE(1),
-    UPDATE(2);
-    
-    private final int id;
-    
-    Operation(int id) {
-        this.id = id;
-    }
-
-    public int getId() {
-        return id;
-    }
+public interface LogEntry {
+    public int getId();
+    public Operation getOperation();
+    public Row getRow();
+    public void write(Writer writer)  throws IOException;
 }

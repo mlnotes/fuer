@@ -3,24 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mlnotes.fuer.log;
+package com.mlnotes.fuer.data;
 
 /**
  *
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
-public enum Operation {
-    INSERT(0),
-    DELETE(1),
-    UPDATE(2);
+public interface Column {
     
-    private final int id;
-    
-    Operation(int id) {
-        this.id = id;
-    }
-
-    public int getId() {
-        return id;
-    }
 }

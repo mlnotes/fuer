@@ -10,6 +10,7 @@ package com.mlnotes.fuer.log;
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
 public interface Log {
-    public int getId();
-    public Operation getOperation();
+    public void add(LogEntry entry);
+    public void save();
+    public void load();
 }

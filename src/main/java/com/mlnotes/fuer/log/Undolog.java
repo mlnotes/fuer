@@ -10,5 +10,5 @@ package com.mlnotes.fuer.log;
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
 public interface Undolog extends Log {
-    
+    public void undo();
 }

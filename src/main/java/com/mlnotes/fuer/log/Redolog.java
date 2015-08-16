@@ -10,4 +10,5 @@ package com.mlnotes.fuer.log;
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
 public interface Redolog extends Log {
+    public void redo();
 }
