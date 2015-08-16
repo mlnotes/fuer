@@ -63,7 +63,8 @@ public class Buffer {
             throw new IOException("cannot read int from buffer");
         }
         
-        short x = (short)((data[readPos] << 8) + data[readPos+1]);
+        short x = (short)((data[readPos] << 8) 
+                + (data[readPos+1] & 0xff));
         readPos += 2;
         return x;
     }
@@ -84,9 +85,9 @@ public class Buffer {
         }
 
         int x = (data[readPos] << 24)
-                + (data[readPos + 1] << 16)
-                + (data[readPos + 2] << 8)
-                + (data[readPos + 3]);
+                + ((data[readPos + 1] & 0xff) << 16)
+                + ((data[readPos + 2] & 0xff) << 8)
+                + (data[readPos + 3] & 0xff);
         readPos += 4;
         return x;
     }
@@ -104,7 +105,7 @@ public class Buffer {
     }
     
     public long readLong() throws IOException {
-        return ((long)readInt() << 32) + readInt();
+        return ((long)readInt() << 32) + (readInt() & 0xffffffffL);
     }
     
     // TODO not sure when to use >>> or >> 

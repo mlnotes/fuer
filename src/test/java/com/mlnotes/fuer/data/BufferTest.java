@@ -29,4 +29,18 @@ public class BufferTest {
         assertEquals(v1, buffer.readShort());
         assertEquals(v2, buffer.readShort());
     }
+    
+    @Test
+    public void testInt() throws IOException {
+        int v1 = -100;
+        buffer.writeInt(v1);
+        assertEquals(v1, buffer.readInt());
+    }
+    
+    @Test
+    public void testLong() throws IOException {
+        long v1 = -100;
+        buffer.writeLong(v1);
+        assertEquals(v1, buffer.readLong());
+    }
 }
