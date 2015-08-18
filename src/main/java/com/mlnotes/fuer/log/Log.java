@@ -21,6 +21,7 @@ package com.mlnotes.fuer.log;
  */
 public interface Log {
     public void add(LogEntry entry);
+    // TODO should log e cached when save to file ?
     public void save();
     public void load();
 }

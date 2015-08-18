@@ -23,7 +23,9 @@ public enum Operation {
     UNKOWN(0),
     INSERT(1),
     DELETE(2),
-    UPDATE(3);
+    UPDATE(3),
+    COMMIT(4),
+    ROLLBACK(5);
     
     private final int id;
     

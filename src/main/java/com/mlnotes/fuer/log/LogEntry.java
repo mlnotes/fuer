@@ -26,11 +26,15 @@ import java.io.IOException;
 public interface LogEntry {
 
     public int getId();
+    
+    public int getTransactionId();
 
     public Operation getOperation();
 
     public Row getRow();
 
+    public boolean checksum();
+    
     public void write(Buffer buffer) throws IOException;
 
     public void read(Buffer buffer) throws IOException;
