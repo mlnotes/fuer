@@ -23,14 +23,42 @@ import java.io.IOException;
  */
 public class Buffer {
 
-    private final byte[] data;
+    private byte[] data;
     private int readPos = 0;
     private int writePos = 0;
+
+    public int getReadPos() {
+        return readPos;
+    }
+
+    public void setReadPos(int readPos) {
+        this.readPos = readPos;
+    }
+
+    public int getWritePos() {
+        return writePos;
+    }
+
+    public void setWritePos(int writePos) {
+        this.writePos = writePos;
+    }
+
+    public void reset() {
+        readPos = 0;
+        writePos = 0;
+    }
+
+    public void expand() {
+        int length = data.length * 2 + 1;
+        byte[] buff = new byte[length];
+        System.arraycopy(data, 0, buff, 0, data.length);
+        data = buff;
+    }
 
     public Buffer(int capacity) {
         data = new byte[capacity];
     }
-    
+
     public byte readByte() throws IOException {
         if (readPos + 1 > writePos) {
             throw new IOException("cannot read int from buffer");
@@ -49,36 +77,36 @@ public class Buffer {
         data[writePos] = x;
         writePos += 1;
     }
-    
+
     public char readChar() throws IOException {
-        return (char)readByte();
+        return (char) readByte();
     }
-    
+
     public void writeChar(char c) throws IOException {
-        writeByte((byte)c);
+        writeByte((byte) c);
     }
 
     public short readShort() throws IOException {
-        if(readPos + 2 > writePos) {
+        if (readPos + 2 > writePos) {
             throw new IOException("cannot read int from buffer");
         }
-        
-        short x = (short)((data[readPos] << 8) 
-                + (data[readPos+1] & 0xff));
+
+        short x = (short) ((data[readPos] << 8)
+                + (data[readPos + 1] & 0xff));
         readPos += 2;
         return x;
     }
-    
+
     public void writeShort(short value) throws IOException {
-        if(writePos + 2 > data.length) {
+        if (writePos + 2 > data.length) {
             throw new IOException("cannot read int from buffer");
         }
-        
-        data[writePos] = (byte)(value >> 8);
-        data[writePos+1] = (byte)value;
+
+        data[writePos] = (byte) (value >> 8);
+        data[writePos + 1] = (byte) value;
         writePos += 2;
     }
-    
+
     // & 0xff make byte to int, for byte(-20) & 0xff = int(236)
     public int readInt() throws IOException {
         if (readPos + 4 > writePos) {
@@ -104,14 +132,14 @@ public class Buffer {
         data[writePos + 3] = (byte) (num);
         writePos += 4;
     }
-    
+
     public long readLong() throws IOException {
-        return ((long)readInt() << 32) + (readInt() & 0xffffffffL);
+        return ((long) readInt() << 32) + (readInt() & 0xffffffffL);
     }
-    
+
     // TODO not sure when to use >>> or >> 
     public void writeLong(long num) throws IOException {
         writeInt((int) (num >>> 32));
-        writeInt((int)num);
+        writeInt((int) num);
     }
 }
