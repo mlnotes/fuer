@@ -13,15 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mlnotes.fuer.table;
+package com.mlnotes.fuer.core;
 
-import com.mlnotes.fuer.table.value.Value;
+import java.util.Date;
 
 /**
  *
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
-public interface Column {
-    public boolean isNullable();
-    public Value getValue();
+
+/**
+ * 
+ * Server side session object, which contains information about a connection
+ */
+public class Session {
+    private int id;
+    private Date start;
+    private Date end;
+    private Database database;
+    
+    public Session(int id, Database database) {
+        this.id = id;
+        this.database = database;
+        this.start = new Date();
+    }
+
+    public int getId() {
+        return id;
+    }
+    
+    
 }

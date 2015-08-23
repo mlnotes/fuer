@@ -15,13 +15,14 @@
  */
 package com.mlnotes.fuer.table;
 
-import com.mlnotes.fuer.table.value.Value;
+import java.util.List;
 
 /**
  *
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
-public interface Column {
-    public boolean isNullable();
-    public Value getValue();
+public interface Table {
+    public int getDatabaseId();
+    public List<Column> getColumns();
+    public int getRowCount();
 }

@@ -13,15 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mlnotes.fuer.table;
-
-import com.mlnotes.fuer.table.value.Value;
+package com.mlnotes.fuer.core;
 
 /**
  *
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
-public interface Column {
-    public boolean isNullable();
-    public Value getValue();
+public class Database {
+    
 }

@@ -13,15 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mlnotes.fuer.table;
+package com.mlnotes.fuer.core;
 
-import com.mlnotes.fuer.table.value.Value;
+import java.util.List;
 
 /**
  *
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
-public interface Column {
-    public boolean isNullable();
-    public Value getValue();
+public class Engine {
+    // opened sessions
+    private List<Session> sessions;
 }

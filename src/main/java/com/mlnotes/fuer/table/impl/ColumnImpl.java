@@ -13,15 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mlnotes.fuer.table;
+package com.mlnotes.fuer.table.impl;
 
+import com.mlnotes.fuer.table.Column;
 import com.mlnotes.fuer.table.value.Value;
 
 /**
  *
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
-public interface Column {
-    public boolean isNullable();
-    public Value getValue();
+public class ColumnImpl implements Column {
+    private Value value;
+    private boolean nullable;
+    
+    @Override
+    public boolean isNullable() {
+        return nullable;
+    }
+
+    @Override
+    public Value getValue() {
+        return value;
+    }
 }

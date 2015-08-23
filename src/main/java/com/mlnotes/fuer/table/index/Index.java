@@ -13,15 +13,21 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mlnotes.fuer.table;
+package com.mlnotes.fuer.table.index;
 
-import com.mlnotes.fuer.table.value.Value;
+import com.mlnotes.fuer.table.Row;
 
 /**
  *
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
-public interface Column {
-    public boolean isNullable();
-    public Value getValue();
+public interface Index {
+
+    Row find(Row row);
+
+    boolean add(Row row);
+
+    boolean delete(Row row);
+
+    boolean updat(Row oldVal, Row newVal);
 }
