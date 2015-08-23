@@ -25,13 +25,13 @@ import java.io.IOException;
  */
 public interface LogEntry {
 
-    public int getId();
+    int getId();
     
-    public int getTransactionId();
+    int getTransactionId();
 
-    public Operation getOperation();
+    Operation getOperation();
 
-    public Row getRow();
+    Row getRow();
 
     public boolean checksum();
     

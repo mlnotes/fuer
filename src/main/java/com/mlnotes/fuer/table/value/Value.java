@@ -24,13 +24,13 @@ import java.io.IOException;
  */
 public interface Value {
 
-    public Type getType();
+    Type getType();
 
     // write data without type
-    public void write(Buffer buffer) throws IOException;
+    void write(Buffer buffer) throws IOException;
 
     // read data without type
-    public void read(Buffer buffer) throws IOException;
+    void read(Buffer buffer) throws IOException;
 
     enum Type {
 

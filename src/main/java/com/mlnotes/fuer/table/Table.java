@@ -15,6 +15,7 @@
  */
 package com.mlnotes.fuer.table;
 
+import com.mlnotes.fuer.table.index.Index;
 import java.util.List;
 
 /**
@@ -22,7 +23,7 @@ import java.util.List;
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
 public interface Table {
-    public int getDatabaseId();
-    public List<Column> getColumns();
-    public int getRowCount();
+    int getDatabaseId();
+    List<Column> getColumns();
+    int getRowCount();
 }

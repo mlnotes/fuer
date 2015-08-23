@@ -20,7 +20,7 @@ package com.mlnotes.fuer.transaction;
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
 public interface TransactionManager {
-    public Transaction begin();
-    public void commit();
-    public Transaction getTransaction();
+    Transaction begin();
+    void commit();
+    Transaction getTransaction();
 }

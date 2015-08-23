@@ -20,8 +20,8 @@ package com.mlnotes.fuer.log;
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
 public interface Log {
-    public void add(LogEntry entry);
+    void add(LogEntry entry);
     // TODO should log e cached when save to file ?
-    public void save();
-    public void load();
+    void save();
+    void load();
 }

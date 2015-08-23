@@ -22,6 +22,6 @@ import com.mlnotes.fuer.table.value.Value;
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
 public interface Column {
-    public boolean isNullable();
-    public Value getValue();
+    boolean isNullable();
+    Value getValue();
 }

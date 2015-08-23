@@ -20,5 +20,5 @@ package com.mlnotes.fuer.transaction;
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
 public interface BeforeCommit {
-    public void run();
+    void run();
 }

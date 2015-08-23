@@ -27,11 +27,11 @@ public interface Row {
 
     // TOOD should row have a default identifier ?
     
-    public void write(Buffer buffer) throws IOException;
+    void write(Buffer buffer) throws IOException;
 
-    public void read(Buffer buffer) throws IOException;
+    void read(Buffer buffer) throws IOException;
     
-    public void setValue(int i, Value value);
+    void setValue(int i, Value value);
     
-    public Value getValue(int i);
+    Value getValue(int i);
 }

@@ -22,11 +22,11 @@ import com.mlnotes.fuer.log.Log;
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
 public interface Transaction {
-    public int getId();
-    public void commit();
-    public void rollback();
-    public Status getStatus();
-    public boolean apppend(Log log);
+    int getId();
+    void commit();
+    void rollback();
+    Status getStatus();
+    boolean apppend(Log log);
     
     enum Status {
         BEGIN,
