@@ -13,15 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mlnotes.fuer.core;
-
-import java.util.List;
+package com.mlnotes.fuer.exception;
 
 /**
  *
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
-public class Engine {
-    // opened sessions
-    private List<Session> sessions;
+public class UnexistedSessionException extends Exception {
+    private int sessionId;
+    public UnexistedSessionException(int sessionId) {
+        this.sessionId = sessionId;
+    }
+    
+    // TODO return error message which contains sessionId
 }

@@ -15,10 +15,20 @@
  */
 package com.mlnotes.fuer.core;
 
+import com.mlnotes.fuer.exception.UnexistedTableException;
+import com.mlnotes.fuer.table.Table;
+import java.util.Date;
+
 /**
  *
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
-public class Database {
-    
+public interface Database {
+    int getId();
+    String getName();
+    Date getCreateTime();
+    Table getTable(String name) throws UnexistedTableException;
+    boolean dropTable(String name) throws UnexistedTableException;
+    // TODO need a sql parser
+    Table createTable(String sql);
 }

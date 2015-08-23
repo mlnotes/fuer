@@ -15,17 +15,15 @@
  */
 package com.mlnotes.fuer.core;
 
-import java.util.Date;
+import com.mlnotes.fuer.exception.UnexistedDatabaseException;
+import com.mlnotes.fuer.exception.UnexistedSessionException;
 
 /**
  *
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
-public interface Session {
-    int getId();
-    Database getDatabase();
-    Date getStart();
-    Date getEnd();
-    boolean open();
-    boolean close();
+public interface Server {
+    Session openSession(int databaseId) throws UnexistedDatabaseException;
+    Session getSession(int sessionId) throws UnexistedSessionException;
+    boolean closeSession(int sessionId) throws UnexistedSessionException;
 }

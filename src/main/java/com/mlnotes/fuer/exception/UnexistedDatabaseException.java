@@ -13,19 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mlnotes.fuer.core;
-
-import java.util.Date;
+package com.mlnotes.fuer.exception;
 
 /**
  *
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
-public interface Session {
-    int getId();
-    Database getDatabase();
-    Date getStart();
-    Date getEnd();
-    boolean open();
-    boolean close();
+public class UnexistedDatabaseException extends Exception {
+    private int databaseId;
+    public UnexistedDatabaseException(int databaseId) {
+        this.databaseId = databaseId;
+    }
+    
+    // TODO generate error message
 }

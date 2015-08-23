@@ -26,4 +26,6 @@ public interface Table {
     int getDatabaseId();
     List<Column> getColumns();
     int getRowCount();
+    // each table should have at least a default index
+    Index getIndex();
 }

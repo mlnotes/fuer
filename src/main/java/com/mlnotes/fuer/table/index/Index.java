@@ -30,4 +30,6 @@ public interface Index {
     boolean delete(Row row);
 
     boolean updat(Row oldVal, Row newVal);
+    
+    int getRowCount();
 }
