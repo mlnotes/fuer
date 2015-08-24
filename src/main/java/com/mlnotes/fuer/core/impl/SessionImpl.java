@@ -29,24 +29,27 @@ import java.util.Date;
  * Server side session object, which contains information about a connection
  */
 public class SessionImpl implements Session {
+    private int id;
     private Date start;
     private Date end;
+    private Database database;
 
+    public SessionImpl(int id, Database database) {
+        this.id = id;
+        this.database = database;
+        start = new Date();
+    }
+    
     @Override
     public int getId() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return id;
     }
 
     @Override
     public Database getDatabase() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return database;
     }
 
-    @Override
-    public boolean open() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
     @Override
     public boolean close() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

@@ -13,20 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mlnotes.fuer.table;
-
-import com.mlnotes.fuer.table.index.Index;
-import java.util.List;
+package com.mlnotes.fuer.exception;
 
 /**
  *
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
-public interface Table {
-    int getDatabaseId();
-    List<Column> getColumns();
-    int getRowCount();
-    // each table should have at least a default index
-    Index getIndex();
-    String getFileName();
+public class InvalidDatabaseFileException extends Exception {
+    private String fileName;
+    public InvalidDatabaseFileException(String fileName) {
+        this.fileName = fileName;
+    }
+    
+    // TODO generate error message
 }

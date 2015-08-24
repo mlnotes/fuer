@@ -26,6 +26,5 @@ public interface Session {
     Database getDatabase();
     Date getStart();
     Date getEnd();
-    boolean open();
     boolean close();
 }

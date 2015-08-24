@@ -13,20 +13,30 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mlnotes.fuer.table;
+package com.mlnotes.fuer.file;
 
-import com.mlnotes.fuer.table.index.Index;
-import java.util.List;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.RandomAccessFile;
+import java.nio.channels.FileChannel;
 
 /**
  *
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
-public interface Table {
-    int getDatabaseId();
-    List<Column> getColumns();
-    int getRowCount();
-    // each table should have at least a default index
-    Index getIndex();
-    String getFileName();
+public final class FileUtil {
+    public static boolean exists(String fileName) {
+        File file = new File(fileName);
+        return file.exists();
+    }
+    
+    public static FileChannel openFile(String fileName, boolean create) throws FileNotFoundException {
+        String mode = "r";
+        if(create) {
+            mode += "w";
+        }
+        
+        RandomAccessFile file = new RandomAccessFile(fileName, mode);
+        return file.getChannel();
+    }
 }

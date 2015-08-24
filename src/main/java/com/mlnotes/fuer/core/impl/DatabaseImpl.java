@@ -16,6 +16,7 @@
 package com.mlnotes.fuer.core.impl;
 
 import com.mlnotes.fuer.core.Database;
+import com.mlnotes.fuer.exception.InvalidDatabaseFileException;
 import com.mlnotes.fuer.exception.UnexistedTableException;
 import com.mlnotes.fuer.table.Table;
 import java.util.Date;
@@ -31,6 +32,10 @@ public class DatabaseImpl implements Database {
     private Date createTime;
     private Map<String, Table> tables;
 
+    public DatabaseImpl(String name) {
+        this.name = name;
+    }
+    
     @Override
     public int getId() {
         return id;
@@ -71,5 +76,20 @@ public class DatabaseImpl implements Database {
         if(!tables.containsKey(name)) {
             throw new UnexistedTableException(name);
         }
+    }
+
+    @Override
+    public String getFileName() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public String setFileName(String fileName) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void openFile(String fileName) throws InvalidDatabaseFileException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

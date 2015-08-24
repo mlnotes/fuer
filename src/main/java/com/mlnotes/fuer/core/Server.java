@@ -15,15 +15,17 @@
  */
 package com.mlnotes.fuer.core;
 
+import com.mlnotes.fuer.exception.InvalidDatabaseFileException;
 import com.mlnotes.fuer.exception.UnexistedDatabaseException;
 import com.mlnotes.fuer.exception.UnexistedSessionException;
 
 /**
+ * Manage sessions & databases
  *
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
 public interface Server {
-    Session openSession(int databaseId) throws UnexistedDatabaseException;
+    Session openSession(String dbName, boolean create) throws UnexistedDatabaseException, InvalidDatabaseFileException;
     Session getSession(int sessionId) throws UnexistedSessionException;
     boolean closeSession(int sessionId) throws UnexistedSessionException;
 }

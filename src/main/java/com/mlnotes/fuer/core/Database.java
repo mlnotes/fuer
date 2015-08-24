@@ -15,6 +15,7 @@
  */
 package com.mlnotes.fuer.core;
 
+import com.mlnotes.fuer.exception.InvalidDatabaseFileException;
 import com.mlnotes.fuer.exception.UnexistedTableException;
 import com.mlnotes.fuer.table.Table;
 import java.util.Date;
@@ -26,9 +27,12 @@ import java.util.Date;
 public interface Database {
     int getId();
     String getName();
+    String getFileName();
+    String setFileName(String fileName);
     Date getCreateTime();
     Table getTable(String name) throws UnexistedTableException;
     boolean dropTable(String name) throws UnexistedTableException;
     // TODO need a sql parser
     Table createTable(String sql);
+    void openFile(String fileName) throws InvalidDatabaseFileException;
 }

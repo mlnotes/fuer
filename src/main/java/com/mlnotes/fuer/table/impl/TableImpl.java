@@ -25,6 +25,7 @@ import java.util.List;
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
 public class TableImpl implements Table {
+    private String fileName;
     private Index defaultIndex;
 
     @Override
@@ -47,4 +48,8 @@ public class TableImpl implements Table {
         return defaultIndex;
     }
     
+    @Override
+    public String getFileName() {
+        return fileName;
+    }
 }

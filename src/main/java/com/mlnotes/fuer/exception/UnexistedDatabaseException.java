@@ -20,9 +20,9 @@ package com.mlnotes.fuer.exception;
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
 public class UnexistedDatabaseException extends Exception {
-    private int databaseId;
-    public UnexistedDatabaseException(int databaseId) {
-        this.databaseId = databaseId;
+    private String dbName;
+    public UnexistedDatabaseException(String dbName) {
+        this.dbName = dbName;
     }
     
     // TODO generate error message
