@@ -17,7 +17,9 @@ package com.mlnotes.fuer.file;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
 /**
@@ -28,6 +30,10 @@ public final class FileUtil {
     public static boolean exists(String fileName) {
         File file = new File(fileName);
         return file.exists();
+    }
+    
+    public static FileChannel openFile(String fileName) throws FileNotFoundException {
+        return openFile(fileName, false);
     }
     
     public static FileChannel openFile(String fileName, boolean create) throws FileNotFoundException {

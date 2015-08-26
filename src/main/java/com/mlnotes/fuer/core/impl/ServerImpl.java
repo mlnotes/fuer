@@ -23,6 +23,7 @@ import com.mlnotes.fuer.exception.UnexistedDatabaseException;
 import com.mlnotes.fuer.exception.UnexistedSessionException;
 import com.mlnotes.fuer.file.FileUtil;
 import java.io.File;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -36,8 +37,8 @@ public class ServerImpl implements Server {
     private final AtomicInteger sessionIdGenerator = new AtomicInteger(1);
 
     private final String dataDir;
-    private Map<Integer, Session> openedSessions;
-    private Map<String, Database> openedDbs;
+    private Map<Integer, Session> openedSessions = new HashMap<>();
+    private Map<String, Database> openedDbs = new HashMap<>();
 
     public ServerImpl(String dataDir) {
         this.dataDir = dataDir;

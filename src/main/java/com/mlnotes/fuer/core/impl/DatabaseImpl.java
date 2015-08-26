@@ -18,7 +18,10 @@ package com.mlnotes.fuer.core.impl;
 import com.mlnotes.fuer.core.Database;
 import com.mlnotes.fuer.exception.InvalidDatabaseFileException;
 import com.mlnotes.fuer.exception.UnexistedTableException;
+import com.mlnotes.fuer.file.FileUtil;
 import com.mlnotes.fuer.table.Table;
+import java.io.IOException;
+import java.nio.channels.FileChannel;
 import java.util.Date;
 import java.util.Map;
 
@@ -26,7 +29,7 @@ import java.util.Map;
  *
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
-public class DatabaseImpl implements Database {
+public class DatabaseImpl implements Database {    
     private int id;
     private String name;
     private Date createTime;
@@ -89,7 +92,16 @@ public class DatabaseImpl implements Database {
     }
 
     @Override
-    public void openFile(String fileName) throws InvalidDatabaseFileException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void openFile(String fileName) throws InvalidDatabaseFileException, IOException {
+        FileChannel file = FileUtil.openFile(fileName);
+        if(!DatabaseFileValidator.validate(file)) {
+            throw new InvalidDatabaseFileException(fileName);
+        }
+        
+        // rewind the file
+        file.position(0);
+        
+        // TODO read content
+        
     }
 }

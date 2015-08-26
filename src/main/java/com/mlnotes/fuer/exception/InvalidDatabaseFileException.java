@@ -20,10 +20,11 @@ package com.mlnotes.fuer.exception;
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
 public class InvalidDatabaseFileException extends Exception {
-    private String fileName;
     public InvalidDatabaseFileException(String fileName) {
-        this.fileName = fileName;
+        super("Invalid database file: " + fileName);
     }
     
-    // TODO generate error message
+    public InvalidDatabaseFileException(String fileName, Throwable cause) {
+        super("Invalid database file: " + fileName, cause);
+    }
 }
