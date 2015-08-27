@@ -29,4 +29,5 @@ public interface Table {
     // each table should have at least a default index
     Index getIndex();
     String getFileName();
+    void openFile(String fileName);
 }

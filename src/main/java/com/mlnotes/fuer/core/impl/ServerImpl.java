@@ -23,9 +23,12 @@ import com.mlnotes.fuer.exception.UnexistedDatabaseException;
 import com.mlnotes.fuer.exception.UnexistedSessionException;
 import com.mlnotes.fuer.file.FileUtil;
 import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Manage sessions & databases
@@ -56,7 +59,11 @@ public class ServerImpl implements Server {
                 throw new UnexistedDatabaseException(dbName);
             } else {
                 db = new DatabaseImpl(dbName);
-                db.openFile(fileName);
+                try {
+                    db.openFile(fileName, create);
+                } catch (IOException ex) {
+                    throw new InvalidDatabaseFileException(fileName, ex);
+                }
                 openedDbs.put(dbName, db);
             }
         }

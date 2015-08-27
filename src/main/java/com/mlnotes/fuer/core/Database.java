@@ -31,9 +31,10 @@ public interface Database {
     String getFileName();
     String setFileName(String fileName);
     Date getCreateTime();
+    Date getModifyTime();
     Table getTable(String name) throws UnexistedTableException;
     boolean dropTable(String name) throws UnexistedTableException;
     // TODO need a sql parser
     Table createTable(String sql);
-    void openFile(String fileName) throws InvalidDatabaseFileException, IOException;
+    void openFile(String fileName, boolean create) throws InvalidDatabaseFileException, IOException;
 }

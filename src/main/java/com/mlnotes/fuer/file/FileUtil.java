@@ -45,4 +45,34 @@ public final class FileUtil {
         RandomAccessFile file = new RandomAccessFile(fileName, mode);
         return file.getChannel();
     }
+    
+    /**
+     * Read a String from file, the first to read is a 4 bytes integer,
+     * it's the length of the String.
+     * 
+     * @param file
+     * @return String
+     * @throws java.io.IOException
+     */
+    public static String readString(FileChannel file) throws IOException {
+        ByteBuffer lenBuff = ByteBuffer.allocate(4);
+        file.read(lenBuff);
+        int len = lenBuff.getInt();
+        ByteBuffer strBuff = ByteBuffer.allocate(len);
+        file.read(strBuff);
+        
+        return String.valueOf(strBuff.array());
+    }
+    
+    public static long readLong(FileChannel file) throws IOException {
+        ByteBuffer buff = ByteBuffer.allocate(8);
+        file.read(buff);
+        return buff.getLong();
+    }
+    
+    public static void writeLong(FileChannel file, long num) throws IOException {
+        ByteBuffer buff = ByteBuffer.allocate(8);
+        buff.putLong(num);
+        file.write(buff);
+    }
 }

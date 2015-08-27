@@ -25,9 +25,19 @@ import java.util.List;
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
 public class TableImpl implements Table {
+    private String name;
     private String fileName;
     private Index defaultIndex;
 
+    public TableImpl(String name) {
+        this.name = name;
+    }
+    
+    @Override
+    public void openFile(String fileName) {
+        // TODO 
+    }
+    
     @Override
     public int getDatabaseId() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
