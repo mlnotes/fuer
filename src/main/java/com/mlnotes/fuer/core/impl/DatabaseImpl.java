@@ -19,11 +19,13 @@ import com.mlnotes.fuer.core.Database;
 import com.mlnotes.fuer.exception.InvalidDatabaseFileException;
 import com.mlnotes.fuer.exception.UnexistedTableException;
 import com.mlnotes.fuer.file.FileUtil;
+import com.mlnotes.fuer.table.Column;
 import com.mlnotes.fuer.table.Table;
 import com.mlnotes.fuer.table.impl.TableImpl;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -35,8 +37,8 @@ import java.util.zip.CRC32;
  */
 public class DatabaseImpl implements Database {
 
-    private static final ByteBuffer MAGIC_HEADER = ByteBuffer.wrap(new byte[]{0, 'F', 0, 'U', 0, 'E', 0, 'R'});
-    private static final int FILE_HEADER = 8 * 3; // bytes
+    private static byte[] MAGIC_HEADER = new byte[]{0, 'F', 0, 'U', 0, 'E', 0, 'R'};
+    private static final int FILE_HEADER_LENGTH = 8 * 3; // bytes
     private int id;
     private String name;
     private Date createTime;
@@ -57,6 +59,11 @@ public class DatabaseImpl implements Database {
         return name;
     }
 
+    @Override
+    public void setName(String name) {
+        this.name = name;
+    }
+    
     @Override
     public Date getCreateTime() {
         return createTime;
@@ -84,8 +91,12 @@ public class DatabaseImpl implements Database {
     }
 
     @Override
-    public Table createTable(String sql) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Table createTable(String name, Column[] columns) {
+        Table table = new TableImpl(name);
+        table.setColumns(columns);
+        // TODO add table into log ?
+        tables.put(name, table);
+        return table;
     }
 
     private void checkExistence(String name) throws UnexistedTableException {
@@ -108,15 +119,13 @@ public class DatabaseImpl implements Database {
     public void openFile(String fileName, boolean create) throws InvalidDatabaseFileException, IOException {
         if (FileUtil.exists(fileName)) {
             openFile(fileName);
-        } else if (!create) {
-            throw new IOException("File: " + fileName + "not exists");
         } else {
             // create new file
+            FileChannel file = FileUtil.openFile(fileName, create);
             createTime = new Date();
             modifyTime = createTime;
-            FileChannel file = FileUtil.openFile(fileName);
             // write magic
-            file.write(MAGIC_HEADER);
+            file.write(ByteBuffer.wrap(MAGIC_HEADER));
             // write length
             FileUtil.writeLong(file, 8 * 2);
             // write checksum
@@ -128,8 +137,9 @@ public class DatabaseImpl implements Database {
             // update checksum
             file.position(8*3);
             long checksum = calcChecksum(file);
-            file.position(8);
+            file.position(8*2);
             FileUtil.writeLong(file, checksum);
+            file.close();
         }
     }
 
@@ -148,7 +158,7 @@ public class DatabaseImpl implements Database {
         }
 
         // skip the file header
-        file.position(FILE_HEADER);
+        file.position(FILE_HEADER_LENGTH);
 
         // ctime
         long ctime = FileUtil.readLong(file);
@@ -174,35 +184,36 @@ public class DatabaseImpl implements Database {
         int read;
         while ((read = file.read(buff)) > 0) {
             crc32.update(buff.array(), 0, read);
-            buff.reset();
+            buff.rewind();
         }
         return crc32.getValue();
     }
 
     private boolean validate(FileChannel file) throws IOException {
-        if (file.size() < 64 * 3) {
+        if (file.size() < FILE_HEADER_LENGTH) {
             return false;
         }
-
+        System.out.println("Large than header");
+        
         // validate magic
         ByteBuffer buff = ByteBuffer.allocate(8);
         file.read(buff);
-        if (!buff.equals(MAGIC_HEADER)) {
+        if (!Arrays.equals(MAGIC_HEADER, buff.array())) {
             return false;
         }
+        System.out.println("Valid Magic Header");
 
         // validate data length
-        buff.reset();
-        file.read(buff);
-        long length = buff.getLong();
-        if (file.size() - 64 * 3 != length) {
+        long length = FileUtil.readLong(file);
+        System.out.println("Length:" + length);
+        if (file.size() -  FILE_HEADER_LENGTH!= length) {
             return false;
         }
+        System.out.println("Valid Length");
 
         // validate checksum
-        buff.reset();
-        file.read(buff);
-        long checksum = buff.getLong();
+        long checksum = FileUtil.readLong(file);
+        
         // crc32 could be used to calculate checksum
         return calcChecksum(file) == checksum;
     }

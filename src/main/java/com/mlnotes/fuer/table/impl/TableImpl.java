@@ -28,6 +28,7 @@ public class TableImpl implements Table {
     private String name;
     private String fileName;
     private Index defaultIndex;
+    private Column[] columns;
 
     public TableImpl(String name) {
         this.name = name;
@@ -36,6 +37,11 @@ public class TableImpl implements Table {
     @Override
     public void openFile(String fileName) {
         // TODO 
+    }
+    
+    @Override
+    public void setColumns(Column[] columns) {
+        this.columns = columns;
     }
     
     @Override

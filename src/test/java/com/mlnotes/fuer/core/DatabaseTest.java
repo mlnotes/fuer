@@ -13,22 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mlnotes.fuer.table;
+package com.mlnotes.fuer.core;
 
-import com.mlnotes.fuer.table.index.Index;
-import java.util.List;
+import com.mlnotes.fuer.core.impl.DatabaseImpl;
+import com.mlnotes.fuer.exception.InvalidDatabaseFileException;
+import java.io.IOException;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  *
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
-public interface Table {
-    int getDatabaseId();
-    List<Column> getColumns();
-    int getRowCount();
-    // each table should have at least a default index
-    Index getIndex();
-    String getFileName();
-    void openFile(String fileName);
-    void setColumns(Column[] columns);
+public class DatabaseTest {
+    private Database db;
+    
+    @Before
+    public void setUp() {
+        db = new DatabaseImpl("/tmp");
+    }
+    
+    @Test
+    public void testCreateFile() throws InvalidDatabaseFileException, IOException {
+        db.openFile("/tmp/hanfeng", true);
+    }
 }

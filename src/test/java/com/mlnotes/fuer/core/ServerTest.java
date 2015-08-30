@@ -13,22 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mlnotes.fuer.table;
+package com.mlnotes.fuer.core;
 
-import com.mlnotes.fuer.table.index.Index;
-import java.util.List;
+import com.mlnotes.fuer.core.impl.ServerImpl;
+import org.junit.Before;
 
 /**
  *
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
-public interface Table {
-    int getDatabaseId();
-    List<Column> getColumns();
-    int getRowCount();
-    // each table should have at least a default index
-    Index getIndex();
-    String getFileName();
-    void openFile(String fileName);
-    void setColumns(Column[] columns);
+public class ServerTest {
+    private Server server;
+    
+    @Before
+    public void setUp() {
+        server = new ServerImpl("/tmp");
+    }
+    
+//    @Test
+//    public void openSession() throws UnexistedDatabaseException, InvalidDatabaseFileException {
+//        Session session = server.openSession("hello", true);
+//        System.out.println(session);
+//    }
 }

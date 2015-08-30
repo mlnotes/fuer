@@ -21,6 +21,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
+import java.util.Arrays;
 
 /**
  *
@@ -67,12 +68,15 @@ public final class FileUtil {
     public static long readLong(FileChannel file) throws IOException {
         ByteBuffer buff = ByteBuffer.allocate(8);
         file.read(buff);
+        buff.rewind();
         return buff.getLong();
     }
     
     public static void writeLong(FileChannel file, long num) throws IOException {
         ByteBuffer buff = ByteBuffer.allocate(8);
         buff.putLong(num);
+        System.out.println("Long: " + Arrays.toString(buff.array()));
+        buff.rewind();
         file.write(buff);
     }
 }
