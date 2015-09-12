@@ -25,6 +25,7 @@ public class BTreeLeafPage extends Page {
 
     private int prevId;
     private int nextId;
+    private int parentId;
     private BTreeData[] data;
 
     public BTreeLeafPage() {

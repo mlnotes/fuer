@@ -26,8 +26,8 @@ public class PageStore {
         return null;
     }
     
-    public Page createPage() {
+    public int createPage() {
         // TODO create a new page with id assigned
-        return null;
+        return -1;
     }
 }
