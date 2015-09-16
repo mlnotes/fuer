@@ -21,17 +21,9 @@ import com.mlnotes.fuer.data.Data;
  *
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
-public class BTreeData {
-    private int key;
+public class BTreeRecord extends BTreeKey {
+
     private Data data;
-
-    public int getKey() {
-        return key;
-    }
-
-    public void setKey(int key) {
-        this.key = key;
-    }
 
     public Data getData() {
         return data;
@@ -40,6 +32,10 @@ public class BTreeData {
     public void setData(Data data) {
         this.data = data;
     }
-    
-    
+
+    @Override
+    public int getSize() {
+        // TODO do not know the size of data
+        return 4;
+    }
 }

@@ -15,30 +15,19 @@
  */
 package com.mlnotes.fuer.table.index.impl;
 
+import com.mlnotes.fuer.storage.Page;
+import static org.junit.Assert.assertTrue;
+import org.junit.Test;
+
 /**
- * An Entry is a key-child pair
  *
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
-public class BTreeEntry extends BTreeKey {
-
-    private int childId;
-
-    public BTreeEntry(int key, int childId) {
-        this.key = key;
-        this.childId = childId;
-    }
-
-    public int getChildId() {
-        return childId;
-    }
-
-    public void setChildId(int childId) {
-        this.childId = childId;
-    }
-
-    @Override
-    public int getSize() {
-        return 4 + 4;
+public class BTreeTest {
+    @Test
+    public void testBasicBTreeNode() {
+        Page root = new BTreeNodePage();
+        
+        assertTrue(root instanceof BTreePage);
     }
 }

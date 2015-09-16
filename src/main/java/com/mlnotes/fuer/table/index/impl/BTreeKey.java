@@ -16,29 +16,19 @@
 package com.mlnotes.fuer.table.index.impl;
 
 /**
- * An Entry is a key-child pair
  *
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
-public class BTreeEntry extends BTreeKey {
+public abstract class BTreeKey {
+    protected int key;
 
-    private int childId;
+    public int getKey() {
+        return key;
+    }
 
-    public BTreeEntry(int key, int childId) {
+    public void setKey(int key) {
         this.key = key;
-        this.childId = childId;
     }
-
-    public int getChildId() {
-        return childId;
-    }
-
-    public void setChildId(int childId) {
-        this.childId = childId;
-    }
-
-    @Override
-    public int getSize() {
-        return 4 + 4;
-    }
+    
+    public abstract int getSize();
 }

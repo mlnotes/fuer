@@ -15,18 +15,14 @@
  */
 package com.mlnotes.fuer.table.index.impl;
 
-import com.mlnotes.fuer.storage.Page;
-
 /**
  *
  * @author Hanfeng Zhu <me@mlnotes.com>
  */
-public class BTreeLeafPage extends Page {
+public class BTreeLeafPage extends BTreePage<BTreeRecord> {
 
     private int prevId;
     private int nextId;
-    private int parentId;
-    private BTreeData[] data;
 
     public BTreeLeafPage() {
         super(BTREE_LEAF);
@@ -53,23 +49,16 @@ public class BTreeLeafPage extends Page {
         this.nextId = nextId;
     }
 
-    public BTreeData findData(int key) {
-        for (int i = 0; i < data.length; ++i) {
-            if (key == data[i].getKey()) {
-                return data[i];
-            } else if (key < data[i].getKey()) {
-                return null;
-            }
-        }
-
-        return null;
-    }
-
     public BTreeLeafPage getPrev() {
         return (BTreeLeafPage) store.findPageById(prevId);
     }
 
     public BTreeLeafPage getNext() {
         return (BTreeLeafPage) store.findPageById(nextId);
+    }
+
+    @Override
+    public boolean isOutOfPage() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

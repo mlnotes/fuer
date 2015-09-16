@@ -25,6 +25,9 @@ public abstract class Page {
 
     public static final int BTREE_NODE = 1;
     public static final int BTREE_LEAF = 2;
+    
+    // page capacity in bytes, default is 4K
+    public static final int PAGE_CAPACITY = 4*1024;
 
     protected int id;
     protected int type;
