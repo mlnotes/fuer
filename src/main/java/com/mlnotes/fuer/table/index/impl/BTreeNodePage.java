@@ -40,9 +40,4 @@ public class BTreeNodePage extends BTreePage<BTreeEntry> {
     public long calcChecksum() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    @Override
-    public boolean isOutOfPage() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

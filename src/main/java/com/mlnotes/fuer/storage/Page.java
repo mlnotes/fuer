@@ -28,6 +28,11 @@ public abstract class Page {
     
     // page capacity in bytes, default is 4K
     public static final int PAGE_CAPACITY = 4*1024;
+    public static final int SIZE_BYTE = 1;
+    public static final int SIZE_CHAR = 1;
+    public static final int SIZE_SHORT = 2;
+    public static final int SIZE_INT = 4;
+    public static final int SIZE_LONG = 8;
 
     protected int id;
     protected int type;

@@ -58,7 +58,8 @@ public class BTreeLeafPage extends BTreePage<BTreeRecord> {
     }
 
     @Override
-    public boolean isOutOfPage() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public int getUsedSize() {
+        // add size of prevId & nextId
+        return super.getUsedSize() + SIZE_INT * 2;
     }
 }

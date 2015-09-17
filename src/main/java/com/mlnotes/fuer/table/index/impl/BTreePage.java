@@ -80,10 +80,21 @@ public abstract class BTreePage<T extends BTreeKey> extends Page {
         }
     }
 
+    public int getUsedSize() {
+        int used = SIZE_INT; // size of parentId
+        if (entries != null && entries.length > 0) {
+            used += entries.length * entries[0].getSize();
+        }
+
+        return used;
+    }
+
     /**
      * Whether the current reocrds is too much to store in a single page
      *
      * @return
      */
-    public abstract boolean isOutOfPage();
+    public boolean isOutOfPage() {
+        return getUsedSize() > PAGE_CAPACITY;
+    }
 }
